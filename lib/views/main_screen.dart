@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/view_model/dataVm.dart';
+import 'package:flutter_practice/views/hello_screen.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    DataViewModel dataVM = Provider.of<DataViewModel>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         actions: const [
@@ -39,11 +43,9 @@ class MainScreen extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
+     
           Container(
-            height: 220,
+            height: 210,
             width: double.maxFinite,
             margin: const EdgeInsets.all(10),
             padding: const EdgeInsets.all(10),
@@ -71,7 +73,7 @@ class MainScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 7,
                 ),
                 const Text(
                   'It remains to be studied: 3/5',
@@ -124,7 +126,7 @@ class MainScreen extends StatelessWidget {
           Container(
             height: 220,
             width: double.maxFinite,
-            margin: const EdgeInsets.all(10),
+            //margin: const EdgeInsets.all(10),
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: Colors.pink.shade100,
@@ -132,7 +134,7 @@ class MainScreen extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Image.asset("lib/assets/cat.png"),
+                Image.asset("lib/assets/cat.png",),
                 const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -150,14 +152,14 @@ class MainScreen extends StatelessWidget {
                         Text(
                           'Invite a friend and',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 16,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
                         Text(
                           'get premium',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 16,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -182,7 +184,10 @@ class MainScreen extends StatelessWidget {
             height: 60,
             margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) =>  HelloScreen(dataVM: dataVM,)));
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue, // Change the button color here
               ),
